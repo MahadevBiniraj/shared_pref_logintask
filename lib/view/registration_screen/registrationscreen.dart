@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_pref_logintask/view/login_screen/loginscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class registrationscreen extends StatefulWidget {
   const registrationscreen({super.key});
@@ -39,7 +40,19 @@ class _LoginscreenState extends State<registrationscreen> {
                 border: OutlineInputBorder(), hintText: "Enter the password"),
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                if (usernamecontroller.text.isNotEmpty &&
+                    passwordcontroller.text.isNotEmpty) {
+                  prefs.setString("username", usernamecontroller.text);
+                  prefs.setString("pass", passwordcontroller.text);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text("enter proper values")));
+                }
+              },
               child: Text(
                 "Register",
                 style: TextStyle(
