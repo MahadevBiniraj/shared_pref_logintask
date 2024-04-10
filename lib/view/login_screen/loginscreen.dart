@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_pref_logintask/view/registration_screen/registrationscreen.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -50,7 +51,13 @@ class _LoginscreenState extends State<Loginscreen> {
             height: 10,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => registrationscreen(),
+                    ));
+              },
               child: Text(
                 "Don't have account, register now",
                 style: TextStyle(

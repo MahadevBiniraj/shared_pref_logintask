@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_pref_logintask/view/login_screen/loginscreen.dart';
 
 class registrationscreen extends StatefulWidget {
   const registrationscreen({super.key});
@@ -18,7 +19,7 @@ class _LoginscreenState extends State<registrationscreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Login now",
+            "Register",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
           ),
           SizedBox(
@@ -50,7 +51,13 @@ class _LoginscreenState extends State<registrationscreen> {
             height: 10,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Loginscreen(),
+                    ));
+              },
               child: Text(
                 "Already have account, Login now",
                 style: TextStyle(
