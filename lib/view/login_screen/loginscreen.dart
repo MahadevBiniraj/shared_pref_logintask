@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_pref_logintask/view/home_screen/home_screen.dart';
 import 'package:shared_pref_logintask/view/registration_screen/registrationscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -39,7 +41,30 @@ class _LoginscreenState extends State<Loginscreen> {
                 border: OutlineInputBorder(), hintText: "Enter the password"),
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () async {
+                final SharedPreferences prefs =
+                    await SharedPreferences.getInstance();
+                if (usernamecontroller.text.isNotEmpty &&
+                    passwordcontroller.text.isNotEmpty) {
+                  final savedusername = await prefs.getString("username");
+                  final savedpassword = await prefs.getString("pass");
+                  if (savedusername == usernamecontroller.text &&
+                      savedpassword == passwordcontroller.text) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Homescreen(),
+                        ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text("wrong password")));
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Enter the values")));
+                }
+              },
               child: Text(
                 "Log In",
                 style: TextStyle(

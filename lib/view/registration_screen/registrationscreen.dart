@@ -47,6 +47,11 @@ class _LoginscreenState extends State<registrationscreen> {
                     passwordcontroller.text.isNotEmpty) {
                   prefs.setString("username", usernamecontroller.text);
                   prefs.setString("pass", passwordcontroller.text);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Loginscreen(),
+                      ));
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       backgroundColor: Colors.red,
