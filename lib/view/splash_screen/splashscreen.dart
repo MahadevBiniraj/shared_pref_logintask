@@ -1,17 +1,18 @@
+import 'package:flutter/material.dart';
+
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:shared_pref_logintask/view/login_screen/loginscreen.dart';
 
-class Splashscreen extends StatefulWidget {
-  const Splashscreen({super.key});
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
 
   @override
-  State<Splashscreen> createState() => _SplashscreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashscreenState extends State<Splashscreen> {
-  void initstate() {
+class _SplashScreenState extends State<SplashScreen> {
+  void initState() {
     super.initState();
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(context,
@@ -21,16 +22,8 @@ class _SplashscreenState extends State<Splashscreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          "Splash",
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
+    return Scaffold(
+      body: Center(child: Text("splash")),
     );
   }
 }
